@@ -8,5 +8,14 @@ html(lang="en")
         input#m(autocomplete="off")
         button Send
     script(src="/socket.io/socket.io.js" type='text/javascript')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type='text/javascript')
     script(type='text/javascript').
       var socket = io();
+      $('form').submit(function() {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
+      });
