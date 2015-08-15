@@ -6,12 +6,18 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
   body
     .container
-      ul#messages
-        form(action="")
-          input#m(autocomplete="off")
-          button Send
+      h1 The Chatroom
+      .row
+        form.col.s12(action="")
+          .row
+            .input-field.col.s12
+              input.validate#m(autocomplete="off" type="text")
+              button.waves-effect.waves-light.btn(type="submit") Send
+      .row
+        ul#messages.collection
 
     script(src="/socket.io/socket.io.js" type="text/javascript")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js" type="text/javascript")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js" type="text/javascript")
     script(src="/js/chat.js" type="text/javascript")
