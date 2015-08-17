@@ -9,7 +9,7 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 //database connection and schema/model definition
-mongoose.connect('mongodb://localhost/socket_chat');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/socket_chat');
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
