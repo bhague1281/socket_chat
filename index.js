@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var moment = require('moment');
+var validator = require('validator');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -37,6 +38,7 @@ io.on('connection', function(socket) {
   io.emit('chat alert', 'A user has connected');
 
   socket.on('chat message', function(msg) {
+    msg = validator.escape(msg);
     var chatMsg = new Chat({message: msg});
     chatMsg.save(function(err, chatMsg) {
       if (err) return console.error(err);
